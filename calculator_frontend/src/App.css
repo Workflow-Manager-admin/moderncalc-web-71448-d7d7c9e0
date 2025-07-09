@@ -21,12 +21,148 @@
   --button-text: #ffffff;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+/* Minimal Calculator Styles - custom for calculator */
+
+:root {
+  --calc-accent: #ff9800;
+  --calc-primary: #1976d2;
+  --calc-secondary: #90caf9;
+  --calc-bg: #f5f7fb;
+  --calc-surface: #fff;
+  --calc-display: #222;
+  --calc-display-bg: #f8fafc;
+  --calc-border: #e0e0e0;
+}
+
+/* Root-level container setup for centering */
+.calculator-root {
+  background: var(--calc-bg);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Calculator main box */
+.calculator {
+  background: var(--calc-surface);
+  border-radius: 2.2rem;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  box-shadow: 0 2px 24px 0 rgba(25, 118, 210, 0.12), 0 0.5px 2px 0 rgba(0,0,0,0.03);
+  width: 100%;
+  max-width: 420px;
+  min-width: 296px;
+  transition: box-shadow 0.2s;
+}
+
+/* Display */
+.calculator-display {
+  background: var(--calc-display-bg);
+  color: var(--calc-display);
+  border-radius: 1rem;
+  margin-bottom: 1.4rem;
+  padding: 1.15rem 1.2rem 0.65rem 1.2rem;
+  text-align: right;
+  min-height: 3.7rem;
+  font-size: 2.18rem;
+  font-family: monospace, 'Menlo', 'Consolas', 'Courier New', monospace;
+  letter-spacing: 0.1rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.04);
+  border: 1px solid var(--calc-border);
+  overflow-x: auto;
+  white-space: pre;
+  user-select: all;
+  word-break: break-all;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Buttons grid */
+.calculator-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+
+/* Individual buttons - .calculator-btn */
+.calculator-btn {
+  font-size: 1.23rem;
+  font-weight: 500;
+  padding: 1rem 0;
+  border-radius: 0.8rem;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background: #f3f4f6;
+  color: #222;
+  box-shadow: 0 0.5px 1.5px 0 rgba(0,0,0,0.04);
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.calculator-btn:active,
+.calculator-btn:focus {
+  background: var(--calc-accent);
+  color: #fff;
+  box-shadow: 0 1.5px 3px 0 rgba(25,118,210,0.11);
+}
+.calculator-btn[aria-label="equals"] {
+  background: var(--calc-accent) !important;
+  color: #fff !important;
+  grid-row: span 2;
+}
+.calculator-btn[aria-label="add"],
+.calculator-btn[aria-label="subtract"],
+.calculator-btn[aria-label="multiply"],
+.calculator-btn[aria-label="divide"] {
+  background: var(--calc-primary) !important;
+  color: #fff !important;
+}
+.calculator-btn[aria-label="clear"],
+.calculator-btn[aria-label="backspace"] {
+  background: var(--calc-secondary) !important;
+  color: var(--calc-primary) !important;
+}
+
+.calculator-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.calc-footer {
+  margin-top: 1.7rem;
+  font-size: 0.94rem;
+  color: var(--calc-secondary);
+  text-align: center;
+  letter-spacing: .04rem;
+}
+
+@media (max-width: 520px) {
+  .calculator {
+    padding: 1.1rem 0.2rem 0.8rem 0.2rem;
+    min-width: 0;
+    max-width: 97vw;
+  }
+  .calculator-display {
+    font-size: 1.36rem;
+    min-height: 2.6rem;
+    padding: 0.68rem 0.7rem 0.4rem 0.7rem;
+  }
+  .calculator-buttons {
+    grid-gap: 0.55rem;
+  }
+  .calc-footer {
+    font-size: 0.86rem;
+    margin-top: 0.67rem;
+  }
+}
+
+/* Remove default app theme stuff */
+.App,
+.App-header,
+.App-logo,
+.App-link,
+.theme-toggle {
+  display: none !important;
 }
 
 .App-logo {
